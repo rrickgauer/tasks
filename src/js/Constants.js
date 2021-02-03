@@ -13,3 +13,6 @@ const m_EVENT_FREQUENCY_VALUES = {
     MONTHLY: 'MONTHLY',
     YEARLY: 'YEARLY',
 }
+
+
+const DateTime = luxon.DateTime;

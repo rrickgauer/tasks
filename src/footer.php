@@ -16,6 +16,9 @@
 <!-- flatpickr: https://flatpickr.js.org/ -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+<!-- luxon: https://moment.github.io/luxon/index.htm -->
+<script src="https://cdn.jsdelivr.net/npm/luxon@1.25.0/build/global/luxon.min.js"></script>
+
 <!-- autotables -->
 <!-- <script src="js/external/auto-tables.js"></script> -->
 

@@ -1,7 +1,9 @@
 let theUser = null;
 
 
-// main function
+/**********************************************************
+Main logic
+**********************************************************/
 $(document).ready(function() {
 
     // be sure the user's id is set
@@ -14,10 +16,9 @@ $(document).ready(function() {
     $("#nav-item-home").addClass('active');
 });
 
-
-/**
- * Checks the localStorage if the userID is set.
- */
+/**********************************************************
+Checks the localStorage if the userID is set.
+**********************************************************/
 function isUserIdSet() {
     if (window.localStorage.getItem('userID') == null) {
         return false;

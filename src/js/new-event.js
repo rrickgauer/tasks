@@ -24,10 +24,9 @@ const inputClassName = '.event-new-input';
 // other shit
 const mUser = new User(Common.getUserIdFromLocalStorage());
 
-
 /***************************************************************************
- * Main logic
- ***************************************************************************/
+Main logic
+***************************************************************************/
 $(document).ready(function() {
     addListeners();
     initFlatpickr();
@@ -35,8 +34,8 @@ $(document).ready(function() {
 
 
 /***************************************************************************
- * Add all the event listeners to the page.
- ***************************************************************************/
+Add all the event listeners to the page.
+***************************************************************************/
 function addListeners() {
     
     $(btnSubmit).on('click', function() {
@@ -59,8 +58,8 @@ function addListeners() {
 }
 
 /***************************************************************************
- * Initialize the date/time inputs to use flatpickr
- ***************************************************************************/
+Initialize the date/time inputs to use flatpickr
+***************************************************************************/
 function initFlatpickr() {
     // time inputs
     $('.event-dates-new .time').flatpickr({
@@ -82,8 +81,8 @@ function initFlatpickr() {
 
 
 /***************************************************************************
- * Submits a new event to the api.
- ***************************************************************************/
+Submits a new event to the api.
+***************************************************************************/
 function submitNewEvent() {
     // make sure all inputs are valid
     if (!areInputsValid()) {
@@ -111,8 +110,8 @@ function submitNewEvent() {
 
 
 /***************************************************************************
- * Validates all the inputs before sending the request to the api.
- ***************************************************************************/
+Validates all the inputs before sending the request to the api.
+***************************************************************************/
 function areInputsValid() {
     // ensure a name is given
     if ($(inputName).val() == '') {
@@ -230,9 +229,9 @@ function areInputsValid() {
 }
 
 /***************************************************************************
- * Sets the text of an input's error message section.
- * Then, sets the input to invalid.
- ***************************************************************************/
+Sets the text of an input's error message section.
+Then, sets the input to invalid.
+***************************************************************************/
 function setInputIsInvalid(elementName, errorMessage) {
     if (errorMessage == undefined) {
         errorMessage = 'Required';
@@ -249,8 +248,8 @@ function setInputIsInvalid(elementName, errorMessage) {
 
 
 /***************************************************************************
- * Remove the class is-invalid from an input when it is changed.
- ***************************************************************************/
+Remove the class is-invalid from an input when it is changed.
+***************************************************************************/
 function removeInvalidFeedback() {
     $(inputClassName).on('change keydown', function() {
 
@@ -264,8 +263,8 @@ function removeInvalidFeedback() {
 
 
 /***************************************************************************
- * Returns a dictionary structure of all the input parms.
- ***************************************************************************/
+Returns a dictionary structure of all the input parms.
+***************************************************************************/
 function getNewEventInputValues() {
     
     // get the inital input values
@@ -306,24 +305,24 @@ function getNewEventInputValues() {
 
 
 /***************************************************************************
- * Action to take when submitting a new event is successful.
- ***************************************************************************/
+Action to take when submitting a new event is successful.
+***************************************************************************/
 function submitNewEventSuccess(responseData, textStatus, xhr) {
     console.log(responseData);
 }
 
 /***************************************************************************
- * Action to take when submitting a new event returns an error.
- ***************************************************************************/
+Action to take when submitting a new event returns an error.
+***************************************************************************/
 function submitNewEventError(response) {
     console.error(response.responseText);
 }
 
 
 /***************************************************************************
- * Toggles the recurrence inputs visibility depending on which frequency
- * the input was changed to.
- ***************************************************************************/
+Toggles the recurrence inputs visibility depending on which frequency
+the input was changed to.
+***************************************************************************/
 function toggleRecurrenceInputsVisibility() {
     $(inputFrequency).on('change', function() {
         const inputFrequencyValue = $(inputFrequency).find('option:selected').val();

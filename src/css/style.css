@@ -11,17 +11,17 @@ hr {
   background-color: white;
 }
 
-.tasks {
+.recurrences {
   display: flex;
   overflow-x: auto;
   padding-bottom: 30px;
 }
 
-.tasks-board {
+.recurrences-board {
   display: block;
 }
 
-.card {
+.card-recurrence-day {
   width: 300px;
   margin: 0px 10px;
 }

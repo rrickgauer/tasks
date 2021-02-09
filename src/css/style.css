@@ -1,5 +1,4 @@
 body {
-  background-color: #fafafa;
   margin-bottom: 100px;
 }
 
@@ -10,6 +9,21 @@ hr {
 .event-dates-new input:disabled,
 .event-dates-new input[readonly] {
   background-color: white;
+}
+
+.tasks {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 30px;
+}
+
+.tasks-board {
+  display: block;
+}
+
+.card {
+  width: 300px;
+  margin: 0px 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -23,10 +23,13 @@
 <!-- <script src="js/external/auto-tables.js"></script> -->
 
 <!-- Constants -->
-<script src="js/Constants.js"></script>
+<script src="js/classes/Constants.js"></script>
 
 <!-- common functions -->
-<script src="js/Common.js"></script>
+<script src="js/classes/Common.js"></script>
 
 <!-- User class -->
-<script src="js/User.js"></script>
+<script src="js/classes/User.js"></script>
+
+<!-- WeekDates class -->
+<script src="js/classes/WeekDates.js"></script>

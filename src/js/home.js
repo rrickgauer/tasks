@@ -2,6 +2,8 @@ let mUser = null;
 let firstDateInCurrentWeek = null;
 let lastDateInCurrentWeek = null;
 
+const weekDates = new WeekDates();
+
 
 /**********************************************************
 Main logic
@@ -9,13 +11,7 @@ Main logic
 $(document).ready(function() {
     setUser();
 
-    setCurrentDates();
-    
     $("#nav-item-home").addClass('active');
-
-    getEventsInRange(firstDateInCurrentWeek.toISODate(), lastDateInCurrentWeek.toISODate(), console.log);
-    
-
 });
 
 /**********************************************************
@@ -46,53 +42,41 @@ function isUserIdSet() {
     }
 }
 
-
-/**********************************************************
-Sets the module variables related to the first and last
-days of the current week.
-**********************************************************/
-function setCurrentDates() {
-    // create the js date objects
-    const curr             = new Date;
-    firstDateInCurrentWeek = new Date(curr.setDate(curr.getDate() - curr.getDay()));
-    lastDateInCurrentWeek  = new Date(curr.setDate(curr.getDate() - curr.getDay() + 6));
-
-    // convert them into luxon DateTime objects
-    firstDateInCurrentWeek = DateTime.fromJSDate(firstDateInCurrentWeek);
-    lastDateInCurrentWeek = DateTime.fromJSDate(lastDateInCurrentWeek);
-}
-
 /**********************************************************
 Makes a request to the api to get all the date occurences
 within the range of dates given.
 **********************************************************/
-function getEventsInRange(startsOn, endsOn, actionSuccess, actionError) {
-    
-    if (actionSuccess == undefined) {
-        actionSuccess = function(response, textStatus, xhr) {
+function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) {
+    // actions to take if request was successful
+    if (a_actionSuccess == undefined) {
+        a_actionSuccess = function(response, textStatus, xhr) {
             console.log(JSON.parse(response));
         }
     }
 
-    if (actionError == undefined) {
-        actionError = function(response) {
+    // actions to take if request was successful
+    if (a_actionError == undefined) {
+        a_actionError = function(response) {
             console.error(response.responseText);
         }
     }
 
+    if (a_startsOn)
+
+    // set the date ranges
     const dateRanges = {
-        starts_on: startsOn,
-        ends_on: endsOn,
+        starts_on: a_startsOn,
+        ends_on: a_endsOn,
     }
     
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  mUser.userID},
-        url: m_API_EVENTS,
+        url: m_API_RECURRENCES,
         type: "GET",
         data: dateRanges,
-        success: actionSuccess,
-        error: actionError,
+        success: a_actionSuccess,
+        error: a_actionError,
     });
 }
 

@@ -2,8 +2,11 @@
  * This class represents the user
  */
 
-
+/**********************************************************
+Constructor
+**********************************************************/
 function User(userID) {
+    // init all properties
     this.userID = userID;
     this.email = null;
     this.createdOn = null;
@@ -11,11 +14,11 @@ function User(userID) {
     this.loadUserInfo();
 }
 
-/**
- * Loads the user data into it's fields.
- */
-User.prototype.loadUserInfo = function() {
 
+/**********************************************************
+Loads the user data into it's fields.
+**********************************************************/
+User.prototype.loadUserInfo = function() {
     const self = this;
 
     $.ajax({

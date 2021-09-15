@@ -1,2 +1,3 @@
 db-info.php
 *.pyc
+__pycache__/

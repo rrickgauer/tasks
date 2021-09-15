@@ -25,6 +25,9 @@ def initApp(flaskApp: Flask):
     # flaskApp.json_encoder = CustomEncoder              
     flaskApp.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
+    # setup key for the session data
+    flaskApp.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
     # setup the CORS policy
     CORS(flaskApp)   
 
@@ -32,7 +35,8 @@ def initApp(flaskApp: Flask):
 # Registert all the blueprints
 #----------------------------------------------------------
 def registerBlueprints(flaskApp: Flask):
-    flaskApp.register_blueprint(routes.login.bp_login, url_prefix='/login')
+    flaskApp.register_blueprint(routes.views.bp_views, url_prefix='')
+    flaskApp.register_blueprint(routes.api.bp_api, url_prefix='/api')
 
 
 # call all the init functions

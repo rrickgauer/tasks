@@ -39,14 +39,13 @@ function removeInvalidDisplaysOnKeyDown() {
     });
 }
 
-
 /**********************************************************
 User has attempted to log in to the system.
 
 Send a request to the api to validate the email and password 
 are a match.
 **********************************************************/
-function loginAttmempt() {
+async function loginAttmempt() {
     // show the loading button
     enableLoginLoadingButton();
     
@@ -56,26 +55,52 @@ function loginAttmempt() {
         return;
     }
     
+    // get the input values
     let email = getEmailInput();
     let password = getPasswordInput();
-    
-    // send the request to the api
-    $.ajax({
-        url: Constants.API_URLS.USERS,
-        type: "get",
-        data: {
-            email: email,
-            password: password,
-        },
+
+    // send the api request
+    try {
+        let responsePromise = sendLoginApiRequest(email, password);    
+        let response = await Promise.resolve(responsePromise);
         
-        success: loginSuccessful,
-        error: loginUnsuccessful,
-    });
-    
-    disableLoginLoadingButton();
-    
+        // was the login attempt successful?
+        if (response) {
+            loginSuccessful();
+        } else {
+            disableLoginLoadingButton();
+            loginUnsuccessful();
+        }
+    } catch (error) {
+        loginUnsuccessful();
+    } finally {
+        disableLoginLoadingButton();
+    }
+
 }
 
+/**********************************************************
+Send a /login request to the api.
+
+Parms:
+    email: email
+    password: password
+
+Returns a bool:
+    true - login was successful
+    false - login was not successful
+**********************************************************/
+async function sendLoginApiRequest(email, password) {
+    let headers = new Headers();
+    headers.set('Authorization', 'Basic ' + btoa(email + ":" + password));
+
+    let apiResponse = await fetch(Constants.API_URLS.LOGIN, {
+        method: 'GET',
+        headers: headers,
+    });
+
+    return apiResponse.ok;
+}
 
 /**********************************************************
 Disables the login button and shows the spinner.
@@ -84,7 +109,6 @@ function enableLoginLoadingButton() {
     const btnHtml = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp;Loading...';
     
     $(btnLogin).html(btnHtml);
-    
     $(btnLogin).prop('disabled', true);
 }
 
@@ -144,8 +168,8 @@ function getPasswordInput() {
 Steps to take when a log in attempt was successful
 **********************************************************/
 function loginSuccessful(apiResponse) {
-    window.localStorage.setItem('userID', JSON.parse(apiResponse).id);    
-    window.location.href = 'home.php';
+    // window.localStorage.setItem('userID', JSON.parse(apiResponse).id);    
+    window.location.href = 'home';
 }
 
 

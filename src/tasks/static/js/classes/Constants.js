@@ -5,12 +5,13 @@ class Constants {
 }
 
 
-Constants.API = 'https://api.tasks.ryanrickgauer.com/main.php';
+Constants.API = '/api';
 
 Constants.API_URLS = {
     EVENTS: Constants.API + '/events',
     RECURRENCES: Constants.API + '/recurrences',
-    USERS: Constants.API + '/users',
+    ACCOUNT: Constants.API + '/account',
+    LOGIN: Constants.API + '/login',
     COMPLETIONS: Constants.API + '/completions',
 };
 

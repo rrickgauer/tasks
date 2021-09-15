@@ -1,21 +1,24 @@
 """
 **********************************************************************************
-Module: login
+Module: views
 
-Url Prefix: /login
+Url Prefix: /
 
+This module handles the routing for all of the responses that return html (view).
 
 **********************************************************************************
 """
 
 import flask
 from flask import Blueprint
+from ..common import security
 
-bp_login = Blueprint('bp_login', __name__)
+bp_views = Blueprint('bp_views', __name__)
 
 #------------------------------------
 # GET login page
 #------------------------------------
-@bp_login.route('')
+@bp_views.route('/login')
 def accountGet():
-    return flask.render_template('login.html')
+    security.clearSessionData()
+    return flask.render_template('pages/login.html')
